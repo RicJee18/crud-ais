@@ -2,68 +2,34 @@
 
 include "./inc/config.php";
 
-if(isset($_GET['edit'])){
-      $id = $_GET['id'];
-      $fname= $_GET['fname'];
-      $mname= $_GET['mname'];
-      $lname= $_GET['lname'];
-      $addr= $_GET['address'];
-      $gender= $_GET['gender'];
-      
-      $result = $mysqli->query("SELECT * FROM employee_profile WHERE `id` = $id ")or die($mysqli->error());
-      if(count($result)){
-          
-      }
+// if(count($_POST) > 0) {
+//   mysqli_query($conn,"UPDATE employee_profile set firstname='" . $_POST['firstname'] . "', middlename='" . $_POST['middlename'] . "', lastname='" . $_POST['lastname'] . "',  address ='" . $_POST['address'] . "', gender ='" . $_POST['gender'] . "' WHERE id ='" . $_GET['userid'] . "'");
+//   echo "Record Modified Successfully";
+//   }
+$result = mysqli_query($conn,"SELECT * FROM employee_profile WHERE id='" . $_GET['update_id'] . "'");
+$row = mysqli_fetch_assoc($result);
 
 
-
-}
-// if(isset($_POST['update'])){
-
-//       $userid = $_POST['userId'];
-//       $fname= $_POST['fname'];
-//       $mname= $_POST['mname'];
-//       $lname= $_POST['lname'];
-//       $addr= $_POST['address'];
-//       $gender= $_POST['gender'];
-
-//       $sql = "UPDATE employee_profile SET `firstname` = '$fname' , `middlename` = '$mname', `lastname` = '$lname' ,`address` = '$addr', `gender` = '$gender' WHERE `id` = '$userid' ";
-      
-//       if ($conn->query($sql) === TRUE) {
-      
-//        header('location:menu.php');
-//       //include "menu.php";
-  
+// if(isset($_GET['update_id'])){
+//       $id = $_GET['update_id']; 
+//       $update = true; 
+//       $result = $conn->query("SELECT * FROM employee_profile WHERE `id` = $id ")or die($conn->error());
+//       if(count($result) == 1){
+//           $row = $result->fetch_assoc();
+//           $fname = $row['fname'];
+//           $mname = $row['mname'];
+//           $lname = $row['lname'];
+//           $addr = $row['address'];
+//           $gender = $row['gender'];
 //       }
-//       else
-//       {
-//         echo "Error: " . $sql . "<br>" . $conn->error;
-//       }
-     
+
+
 
 // }
-
-
-
-
-$conn->close();
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-
+<?php
+include "./inc/header.php";
+?>
 <body class="bg-dark">
 <!-- Page Container -->
 <div class="w3-content w3-margin-top" style="max-width:1400px;">
@@ -76,39 +42,54 @@ $conn->close();
     
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-display-container">
-          <img style="height:280px; width:100%;" src="pic.jpg">
-            <div class="w3-display-topleft w3-container w3-text-white">
-              <h2>Lorem Ipsum</h2>  
-            </div>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img src="./img/pic.jpg" class="d-block w-100" alt="..." height ="320">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/vic.jpg" class="d-block w-100 " alt="..."  height ="320">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/odiong.PNG" class="d-block w-100 " height ="320">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/gwapo.jpg" class="d-block w-100 " height ="320">
+                      </div>
+                    </div>
+              </div>
         </div>
         <div class="w3-container">
-          <form method="post" action="update_save.php">
+          <form method="post" action="update.php">
                     <h5><b>Update account</b></h5>
                     <!-- <input type="hidden" name ='userId' class="form-control"> -->
                     <div class="form-row">
+
+                      <input type="hidden" name="userid" class="txtField" value="<?php echo $_GET['update_id']; ?>">
+
                       <div class="form-group col-md-6">
                           <label  class="form-label">First Name</label>
-                          <input type="text" name ='fname' class="form-control" required>
+                          <input type="text" name ='fname' class="form-control" value="<?php echo $row['firstname']; ?>" required>
                       </div>
                       <div class="form-group col-md-6">
                         <label  class="form-label">Middle Name</label>
-                        <input type="text" name ='mname' class="form-control"  required>
+                        <input type="text" name ='mname' class="form-control"  value="<?php echo $row['middlename']; ?>" required>
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-md-6">
                         <label  class="form-label">Last Name</label>
-                        <input type="text" name ='lname' class="form-control"  required>
+                        <input type="text" name ='lname' class="form-control" value="<?php echo $row['lastname']; ?>" required>
                       </div>
                     <div class="form-group col-md-6">
                         <label  class="form-label">Address</label>
-                        <input type="text" name ='address' class="form-control"  required>
+                        <input type="text" name ='address' class="form-control"  value="<?php echo $row['address']; ?>" required>
                     </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-md-6">
                         <label class="form-label">Gender</label>
-                        <input type="text" name ='gender' class="form-control"  required>
+                        <input type="text" name ='gender' class="form-control" value="<?php echo $row['gender']; ?>" required>
                       </div>
                   </div>
                     <input type="submit"  class="btn btn-success " name ="update" value="Update">       
@@ -201,9 +182,6 @@ $conn->close();
   <!-- End Page Container -->
 </div>
 
-
-</body>
-</html>
-
+<?php include "./inc/header.php";?>
 
   

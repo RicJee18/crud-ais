@@ -13,44 +13,56 @@
     
       <div class="w3-white w3-text-grey w3-card-4">
         <div class="w3-display-container">
-          <img style="height:280px; width:100%;" src="./img/pic.jpg">
-            <div class="w3-display-bottomleft w3-container w3-text-white">
-              <h6>Welcome ...</h6>  
-            </div>
-        </div>
-        <div class="w3-container">
-        <form action="create.php" method="post" class="form">
-                  <h5><b>Create New Account</b></h5>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label  class="form-label">First Name</label>
-                        <input type="text" name ='fname' class="form-control" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label  class="form-label">Middle Name</label>
-                      <input type="text" name ='mname' class="form-control"  required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label  class="form-label">Last Name</label>
-                      <input type="text" name ='lname' class="form-control"  required>
-                    </div>
-                  <div class="form-group col-md-6">
-                      <label  class="form-label">Address</label>
-                      <input type="text" name ='address' class="form-control"  required>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <img src="./img/pic.jpg" class="d-block w-100" alt="..." height ="320">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="./img/vic.jpg" class="d-block w-100 " alt="..."  height ="320">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="./img/odiong.PNG" class="d-block w-100 " height ="320">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="./img/gwapo.jpg" class="d-block w-100 " height ="320">
                   </div>
                 </div>
-                <div class="form-row">
+           </div>
+        </div>
+        <div class="w3-container">
+          <form action="create.php" method="post" class="form">
+                    <h5><b>Create New Account</b></h5>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                          <label  class="form-label">First Name</label>
+                          <input type="text" name ='fname' class="form-control" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label  class="form-label">Middle Name</label>
+                        <input type="text" name ='mname' class="form-control"  required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label  class="form-label">Last Name</label>
+                        <input type="text" name ='lname' class="form-control"  required>
+                      </div>
                     <div class="form-group col-md-6">
-                      <label class="form-label">Gender</label>
-                      <input type="text" name ='gender' class="form-control"  required>
+                        <label  class="form-label">Address</label>
+                        <input type="text" name ='address' class="form-control"  required>
                     </div>
-                </div>
-                  <input   type="submit" name="save"  class="btn btn-primary"  value="Register">
-                  <br><br>
-        
-          </form>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label class="form-label">Gender</label>
+                        <input type="text" name ='gender' class="form-control"  required>
+                      </div>
+                  </div>
+                    <input   type="submit" name="save"  class="btn btn-primary"  value="Register">
+                    <br><br>
+          
+            </form>
         </div>
       </div><br>
 
@@ -105,7 +117,7 @@
                                           <td> <?php echo $row['address'];?> </td>
                                           <td> <?php echo $row['gender'];?> </td>
                                           <td>
-                                              <a class="btn btn-success" href="update_save.php?edit=<?php echo $row['id'];?>">
+                                              <a class="btn btn-success" href="update_save.php?update_id=<?php echo $row['id'];?>">
                                               Update 
                                               </a>
                                           </td>
